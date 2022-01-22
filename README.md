@@ -1,4 +1,6 @@
-# file-upload
+# File Upload
+
+Vue + Node 实现大文件分片上传和断点续传
 
 ## Project setup
 ```

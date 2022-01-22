@@ -1,28 +1,39 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="file-upload">
+      <input type="file" @change="handleFileChange"/>
+      <el-button @click="handleUpload">上传</el-button>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      file: null
+    }
+  },
+  methods: {
+    // 提交文件后触发
+    handleFileChange(e) {
+      const [file] = e.target.files
+      if (!file) return
+      // 将 data 重置为初始状态
+      Object.assign(this.$data, this.$options.data())
+      this.file = file
+    },
+    // 点击上传按钮后触发
+    async handleUpload() {}
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.file-upload {
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
 }
 </style>
