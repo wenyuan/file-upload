@@ -36,7 +36,6 @@ export default {
     // 提交文件后触发
     handleChange(file) {
       this.file = file
-      console.log(this.file)
     },
     // 点击上传按钮后触发
     async handleUpload() {
@@ -45,7 +44,7 @@ export default {
     fileToBuffer() {
     },
     // 生成文件切片
-    createFileChunk() {
+    createChunks() {
     },
     // 上传文件切片
     uploadChunks() {
