@@ -21,7 +21,7 @@ import SparkMD5 from 'spark-md5'
 import axios from 'axios'
 
 const SIZE = 10 * 1024 * 1024 // 切片大小
-const BaseUrl = 'http://localhost:7777'
+const BaseUrl = 'http://localhost:5000'
 
 export default {
   name: 'App',
