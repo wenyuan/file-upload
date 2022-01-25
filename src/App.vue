@@ -106,10 +106,11 @@ export default {
       this.chunkList.forEach((item, index) => {
         const fn = () => {
           const formData = new FormData()
+          formData.append('hash', this.hash)
           formData.append('chunk', item.chunk)
           formData.append('filename', item.fileName)
           return axios({
-            url: BaseUrl + '/upload/',
+            url: BaseUrl + '/api/upload/',
             method: 'post',
             headers: { 'Content-Type': 'multipart/form-data' },
             data: formData
@@ -133,14 +134,19 @@ export default {
       // 文件切片全部发送完毕后, 需要请求 merge 接口, 把文件的 hash 传递给服务器
       const complete = () => {
         axios({
-          url: BaseUrl + '/merge/',
-          method: 'get',
-          params: { hash: this.hash }
+          url: BaseUrl + '/api/merge/',
+          method: 'post',
+          data: { hash: this.hash, filename: this.file.name, size: this.chunkList.length}
         }).then(res => {
           if (res.data.code === 0) { // 请求发送成功
             this.$message({
-              message: '恭喜你，文件上传成功',
+              message: res.data.message,
               type: 'success'
+            })
+          } else {
+            this.$message({
+              message: res.data.message,
+              type: 'error'
             })
           }
         })
