@@ -5,6 +5,8 @@ Vue + Node 实现大文件分片上传和断点续传。
 ## 前端
 
 * Vue.js、Element-Ui 界面展示
+* Blob.slice() 实现文件切片
+* FileReader + spark-md5 生成文件 hash
 * Axios 异步请求
 
 前端运行：
